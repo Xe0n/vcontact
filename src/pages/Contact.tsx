@@ -8,7 +8,7 @@ import { Person, TagsType, FormType } from '../types/types';
 const Contact: React.FC = () => {
   const { id } = useParams();
   const [people, setPeople] = React.useState<Person>();
-  const [tags, setTages] = React.useState<TagsType[]>()
+  const [tags, setTages] = React.useState<TagsType[]>();
   const { register, handleSubmit } = useForm<FormType>();
   const navigate = useNavigate();
   const getPeople = async (): Promise<void> => {
@@ -21,38 +21,42 @@ const Contact: React.FC = () => {
 
   const getTagData = async () => {
     try {
-      const response = await getTags(); 
+      const response = await getTags();
       setTages(response);
     } catch (error) {
       console.error('Ошибка при загрузке данных:', error);
     }
   };
 
- const onSubmit: SubmitHandler<FormType> = async (data:FormType) => {
+  const onSubmit: SubmitHandler<FormType> = async (data: FormType) => {
     const requestBody = {
-        data: {
-                name: data.name,
-                email: data.email,
-                phone: data.phone,
-                tag: {
-                    connect: [{
-                        id: parseInt(data.tag)
-                    }],
-                    disconnect: [{
-                        id: people?.attributes.tag.data.id
-                    }]
-                }
+      data: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        tag: {
+          connect: [
+            {
+              id: parseInt(data.tag),
+            },
+          ],
+          disconnect: [
+            {
+              id: people?.attributes.tag.data.id,
+            },
+          ],
         },
-      };
+      },
+    };
     await fetch(`${import.meta.env.VITE_API}/peoples/${id}`, {
-        method: "PUT",
-        headers: { 
-            Authorization: `Bearer ${import.meta.env.VITE_APITOKEN}`,
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(requestBody) 
-    })
-    navigate('/')
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_APITOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    });
+    navigate('/');
   };
 
   React.useEffect(() => {
@@ -61,9 +65,13 @@ const Contact: React.FC = () => {
   }, []);
 
   if (!people || !tags) {
-    return <><span className="loading loading-spinner text-success flex justify-center w-16 h-16 mt-16 mx-auto"></span></>;
+    return (
+      <>
+        <span className='loading loading-spinner text-success flex justify-center w-16 h-16 mt-16 mx-auto'></span>
+      </>
+    );
   }
-  console.log(tags)
+  console.log(tags);
   return (
     <div className='min-h-full max-w-7xl m-auto pt-5 px-5 sm:px-0'>
       <div className='lg:flex lg:items-center lg:justify-between'>
@@ -83,15 +91,14 @@ const Contact: React.FC = () => {
         </div>
         <div className='mt-5 flex lg:ml-4 lg:mt-0'>
           <span className='sm:ml-3'>
-            <Link to="/">
-            <button
-              type='button'
-              className='inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 ml-3'
-              
-            >
-              <ArrowUturnLeftIcon className='-ml-0.5 mr-1.5 h-5 w-5' aria-hidden='true' />
-              Назад
-            </button>
+            <Link to='/'>
+              <button
+                type='button'
+                className='inline-flex items-center rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-700 ml-3'
+              >
+                <ArrowUturnLeftIcon className='-ml-0.5 mr-1.5 h-5 w-5' aria-hidden='true' />
+                Назад
+              </button>
             </Link>
           </span>
         </div>
@@ -150,7 +157,7 @@ const Contact: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className='mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6'>
               <div className='sm:col-span-4'>
                 <label
@@ -159,11 +166,14 @@ const Contact: React.FC = () => {
                 >
                   Группа
                 </label>
-                <select className="select select-bordered w-full max-w-xs" {...register('tag')}  defaultValue={people.attributes.tag?.data?.id}>
-                    {tags?.map(item => (
-                         <option value={item.id}>{item.attributes.tag}</option>
-                    ))}
-                  
+                <select
+                  className='select select-bordered w-full max-w-xs'
+                  {...register('tag')}
+                  defaultValue={people.attributes.tag?.data?.id}
+                >
+                  {tags?.map((item) => (
+                    <option value={item.id}>{item.attributes.tag}</option>
+                  ))}
                 </select>
               </div>
             </div>

@@ -9,7 +9,7 @@ export interface Person {
         id: number;
         attributes: {
           tag: string;
-        }
+        };
       };
     };
   };
@@ -17,12 +17,12 @@ export interface Person {
 }
 
 export interface TagsType {
-
-        id: number;
-        attributes: {
-          tag: string;
-        };
-}[]
+  id: number;
+  attributes: {
+    tag: string;
+  };
+}
+[];
 
 export interface FormType {
   name: string;

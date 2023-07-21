@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 
-
 const user = {
   name: 'Tom Cook',
   email: 'tom@example.com',
@@ -16,9 +15,7 @@ const navigation = [
   { name: 'Главная', href: '/', current: false },
   { name: 'Добавить контакт', href: '/new-contact', current: false },
 ];
-const userNavigation = [
-  { name: 'Редактировать группы', href: '#' },
-];
+const userNavigation = [{ name: 'Редактировать группы', href: '#' }];
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ');
