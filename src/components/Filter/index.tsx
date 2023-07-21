@@ -25,7 +25,7 @@ const Filter: React.FC<FilterProps> = ({ getSearch, tagSelected, tags }) => {
 
         <input
           type='text'
-          placeholder='Поиск по ФИО / Телефону / Группе'
+          placeholder='Поиск по ФИО / Телефону'
           className='input input-bordered w-full max-w-xs'
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => getSearch(event.target.value)}
         />
