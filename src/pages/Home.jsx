@@ -91,7 +91,7 @@ const Home = () => {
         <header className='bg-white shadow'>
           <div className=' max-w-7xl px-4 py-6 sm:px-6 lg:px-8 mx-auto '>
             <div className='sm:flex flex-col justify-between items-end sm:items-start mb-10'>
-              <h1 className='text-3xl font-bold tracking-tight text-gray-900'>Ваши контакты</h1>
+              <h1 className='text-3xl font-bold tracking-tight text-gray-900 mb-4'>Ваши контакты</h1>
               <Filter getSearch={getSearch} tags={tags} tagSelected={tagSelected}/>
             </div>
             {peopleFiltred.length ? (<Lists people={peopleFiltred} onDel={onDel} currentPage={currentPage} handlePageChange={handlePageChange}/>) : ('Такая запись не найдена =(')}

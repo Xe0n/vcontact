@@ -9,7 +9,7 @@ const Filter = ({ getSearch, tagSelected, tags }) => {
           {tags?.map((item) => (<option value={item.id}>{item.attributes.tag}</option>))}
         </select>
 
-        <input type='text' placeholder='Поиск по ФИО / Телефону / Группе' className='input input-bordered w-full max-w-xs' onChange={(event) => getSearch(event.target.value)}/>
+        <input type='text' placeholder='Поиск по ФИО / Телефону' className='input input-bordered w-full max-w-xs' onChange={(event) => getSearch(event.target.value)}/>
       </div>
     </>);
 };
