@@ -4,8 +4,6 @@
 
 Backend запущен на Strapi
 
-Демо доступно здесь: http://dev.tm-mg.ru/
-
 ![image](https://user-images.githubusercontent.com/70432453/170648662-2ff424b9-74e9-4754-a04d-512fe1496a3b.png)
 
 ## **ToDo 📋**
@@ -31,7 +29,7 @@ yarn install
 
 ```
 VITE_APITOKEN=______
-VITE_API=http://8.209.113.178/api
+VITE_API=http://*.***.113.178/api
 ```
 4. Запустить проект
 
